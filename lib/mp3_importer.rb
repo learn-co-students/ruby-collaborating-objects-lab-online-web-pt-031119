@@ -1,13 +1,16 @@
 class MP3Importer
-
- def initialize
-   Dir.entries("your/folder").select {|f| !File.directory? f}
+attr_accessor :path
+ def initialize(path)
+   @path = path
  end
 
- def files(file)
+ def files
+   Dir.entries(path).select {|f| !File.directory? f}
  end
 
  def import
+   files.each {|files| Song.new_by_filename(files)}
+
  end
 
 end
