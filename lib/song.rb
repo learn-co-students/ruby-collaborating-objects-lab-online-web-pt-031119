@@ -11,12 +11,9 @@ class Song
 
   def artist=(artist_name)
     if artist_name.class == Artist
-      @artist = artist_name
-    elsif Artist.all.find {|artist| artist.name == artist_name}
-      @artist = Artist.all.find {|artist| artist.name == artist_name}
-    else
-      artist = Artist.new(artist_name)
-      @artist = artist
+       @artist = artist_name
+    elsif artist_name.class == String
+      @artist = Artist.find_or_create_by_name(artist_name)
     end
   end
 
