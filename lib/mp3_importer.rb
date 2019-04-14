@@ -4,11 +4,11 @@ class MP3Importer
   
   def initialize(path)
     @path = path
-    @files = Dir.entries(./spec/fixtures/mp3s).grep(/.\.mp3/) 
-  end 
+   end 
   
-  def parse
-    files.split.collect do |address
+  def files
+     @files = Dir.glob ("#{path}/.mp3") collect{|f| f.gsub("#path/", "")} 
+  end 
   
   def import
     @files.each {|file| Song.new_by_filename(file)}
